@@ -37,7 +37,9 @@ app.get('/register', function (req, res) {
 require('./routes')
 
 // Let's go!
-app.listen(3000);
+var port = process.env.PORT || 3000;
+
+app.listen(port);
 
 
 sock.sockets.on('connection', function (socket) {
