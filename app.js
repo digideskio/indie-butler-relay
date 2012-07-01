@@ -5,7 +5,7 @@ var express = require('express')
 , http = require('http');
 
 app = express.createServer();
-
+sock = io.listen(app);
 app.socketRouter = new r();
 
 // Configuration
@@ -19,12 +19,14 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
+  sock.set("transports", ["xhr-polling"]);
+  sock.set("polling duration", 10);
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function(){
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
+  sock.set("transports", ["xhr-polling"]);
+  sock.set("polling duration", 10);
   app.use(express.errorHandler());
 });
 
@@ -37,8 +39,6 @@ require('./routes')
 // Let's go!
 app.listen(3000);
 
-// Sockets
-var sock = io.listen(app);
 
 sock.sockets.on('connection', function (socket) {
   socket.on('register', function (handler) {
