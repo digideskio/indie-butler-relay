@@ -19,8 +19,6 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
-  sock.set("transports", ["xhr-polling"]);
-  sock.set("polling duration", 10);
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
@@ -40,13 +38,14 @@ require('./routes')
 var port = process.env.PORT || 3000;
 
 app.listen(port);
-
+console.log("Listening on", port);
 
 sock.sockets.on('connection', function (socket) {
   socket.on('register', function (handler) {
+    socket.handler = handler
     app.socketRouter.register(handler, socket);
   });
   socket.on('disconnect', function () {
-    app.socketRouter.unregister(handler);
+    app.socketRouter.unregister(socket.handler);
   });
 });

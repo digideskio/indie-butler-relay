@@ -9,7 +9,6 @@ router.prototype.routeExists = function(user) {
 
 router.prototype.route = function(user, path, callback) {
   this._routes[user].emit(path, function(response) {
-  console.log("Response", response);
   callback(response);
   });
 }

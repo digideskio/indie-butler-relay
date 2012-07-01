@@ -6,7 +6,6 @@
 app.get('/:user/:path', function(req, res){
   if(app.socketRouter.routeExists(req.params.user)) {
     app.socketRouter.route(req.params.user, req.params.path, function(data) {
-      console.log("response2", data);
       res.json(data);
     });
   }
