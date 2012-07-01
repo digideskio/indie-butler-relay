@@ -7,8 +7,8 @@ router.prototype.routeExists = function(user) {
   return this._routes[user];
 }
 
-router.prototype.route = function(user, path, callback) {
-  this._routes[user].emit(path, function(response) {
+router.prototype.route = function(user, path, format, callback) {
+  this._routes[user].emit(path, format, function(response) {
   callback(response);
   });
 }

@@ -2,8 +2,8 @@
 <script>
   var socket = io.connect('http://localhost');
   socket.emit('register', 'julien');
-  socket.on('stream', function (fn) {
-    console.log("Someone asked!!!");
+  socket.on('stream', function (format, fn) {
+    console.log("Someone asked!!!", format);
     var entries = [{
       id: "1",
       title: "I set up by buttler",

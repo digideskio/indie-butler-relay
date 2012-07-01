@@ -3,9 +3,9 @@
  */
 
 /*Catch all*/
-app.get('/:user/:path', function(req, res){
+app.get('/:user/:path.:format', function(req, res){
   if(app.socketRouter.routeExists(req.params.user)) {
-    app.socketRouter.route(req.params.user, req.params.path, function(data) {
+    app.socketRouter.route(req.params.user, req.params.path, req.params.format, function(data) {
       res.json(data);
     });
   }
