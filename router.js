@@ -18,4 +18,8 @@ router.prototype.register = function(user, client) {
   this._routes[user] = client;
 }
 
+router.prototype.unregister = function(user, client) {
+  delete this._routes[user];
+}
+
 exports.router = router;

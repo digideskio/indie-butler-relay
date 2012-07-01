@@ -11,7 +11,7 @@ app.get('/:user/:path', function(req, res){
     });
   }
   else {
-    res.render('index', { title: 'You loose!' });
+    res.send('Not available :(', 503);
   }
 });
 

@@ -46,4 +46,7 @@ sock.sockets.on('connection', function (socket) {
   socket.on('register', function (handler) {
     app.socketRouter.register(handler, socket);
   });
+  socket.on('disconnect', function () {
+    app.socketRouter.unregister(handler);
+  });
 });
