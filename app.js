@@ -1,15 +1,14 @@
 
-/**
- * Module dependencies.
- */
-
 var express = require('express')
-  , routes = require('./routes')
+, io = require('socket.io')
+, r = require('./router.js').router
+, http = require('http');
 
-var app = module.exports = express.createServer();
+app = express();
+
+app.socketRouter = new r();
 
 // Configuration
-
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
@@ -28,9 +27,19 @@ app.configure('production', function(){
 });
 
 // Routes
+app.get('/register', function (req, res) {
+  res.sendfile(__dirname + '/views/register.html');
+});
+require('./routes')
 
-app.get('/register/:user', routes.register);
-app.get('/:user', routes.index);
+// Let's go!
+var s = http.createServer(app).listen(3000);
 
-app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+// Sockets
+var sock = io.listen(s);
+
+sock.sockets.on('connection', function (socket) {
+  socket.on('register', function (handler) {
+    app.socketRouter.register(handler, socket);
+  });
+});

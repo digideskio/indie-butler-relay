@@ -3,7 +3,8 @@
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "express": "2.5.0"
+      "express": "https://github.com/visionmedia/express/tarball/master"
     , "jade": ">= 0.0.1"
+    , "socket.io": "*"
   }
 }
