@@ -4,7 +4,7 @@ var express = require('express')
 , r = require('./router.js').router
 , http = require('http');
 
-app = express();
+app = express.createServer();
 
 app.socketRouter = new r();
 
@@ -33,10 +33,10 @@ app.get('/register', function (req, res) {
 require('./routes')
 
 // Let's go!
-var s = http.createServer(app).listen(3000);
+app.listen(3000);
 
 // Sockets
-var sock = io.listen(s);
+var sock = io.listen(app);
 
 sock.sockets.on('connection', function (socket) {
   socket.on('register', function (handler) {
