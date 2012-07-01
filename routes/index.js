@@ -3,10 +3,12 @@
  */
 
 /*Catch all*/
-app.get('/:user', function(req, res){
-  console.log(app.socketRouter);
-  if(app.socketRouter.route(req.params.user)) {
-    res.render('index', { title: 'You win!' });
+app.get('/:user/:path', function(req, res){
+  if(app.socketRouter.routeExists(req.params.user)) {
+    app.socketRouter.route(req.params.user, req.params.path, function(data) {
+      console.log("response2", data);
+      res.json(data);
+    });
   }
   else {
     res.render('index', { title: 'You loose!' });
