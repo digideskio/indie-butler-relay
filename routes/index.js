@@ -6,7 +6,7 @@
 app.get('/:user/:path.:format', function(req, res){
   if(app.socketRouter.routeExists(req.params.user)) {
     app.socketRouter.route(req.params.user, req.params.path, req.params.format, function(data) {
-      switch (format){
+      switch (req.params.format){
         case 'json':
           res.json(data);
         break;
