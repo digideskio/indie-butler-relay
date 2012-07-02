@@ -5,7 +5,7 @@
 /*Catch all*/
 app.get('/:user/:path', function(req, res){
 
-  console.log("-------------------------BUTLER HOST----------------", req);
+  console.log("-------------------------BUTLER HOST----------------", req.header('host'));
 
 
   if(app.socketRouter.routeExists(req.params.user)) {
