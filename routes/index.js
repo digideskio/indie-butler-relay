@@ -4,6 +4,10 @@
 
 /*Catch all*/
 app.get('/:user/:path', function(req, res){
+
+console.log("BUTLER HOST", req.headers.host);
+
+
   if(app.socketRouter.routeExists(req.params.user)) {
     app.socketRouter.route(req.params.user, {headers: req.headers, path: '/' + req.params.path}, function(data) {
       for(header in data.headers) {
