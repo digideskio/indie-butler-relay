@@ -1,9 +1,7 @@
-indie-buttler-server
+Indie Butler Relay
 ====================
 
-The server side of the Indie Buttler. Data agnostic router to local browser extensions.
+The relay side of the Indie Butler. 
 
-Deployment platform: Heroku
-Framework: Express + Socket.io
-Routing: memeory based (later switch to something more appropriate like Redis).
-
+To do
+-----
