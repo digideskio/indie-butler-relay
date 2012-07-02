@@ -1,9 +1,16 @@
-indie-buttler-server
+Indie Butler Relay
 ====================
 
-The server side of the Indie Buttler. Data agnostic router to local browser extensions.
+The relay side of the [Indie Butler](https://github.com/julien51/indie-butler-app). 
 
-Deployment platform: Heroku
-Framework: Express + Socket.io
-Routing: memeory based (later switch to something more appropriate like Redis).
+Since this is a nodejs based app, you can deploy it like you would deploy any other node app. It doesn't have any other software 
+requirement...
+It works on Heroku (but uses xhr-polling), as well as nodejitsu.
 
+
+
+To do
+-----
+
+* Allow for some kind of auth mechanism so that when someone claims a URL, only them can do so.
+* Write more implementations,on other stacks.
