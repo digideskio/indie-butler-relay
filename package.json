@@ -1,14 +1,17 @@
 {
-    "name": "application-name"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "*"
-    , "jade": ">= 0.0.1"
-    , "socket.io": "*"
-  }
-  , "engines": {
-    "node": "0.8.1",
-    "npm":  "1.1.x"
+  "name": "buttler-server",
+  "version": "0.0.1-3",
+  "private": true,
+  "dependencies": {
+    "express": "*",
+    "jade": ">= 0.0.1",
+    "socket.io": "*"
+  },
+  "subdomain": "buttler",
+  "scripts": {
+    "start": "app.js"
+  },
+  "engines": {
+    "node": "0.6.x"
   }
 }

@@ -23,8 +23,9 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  sock.set("transports", ["xhr-polling"]);
-  sock.set("polling duration", 10);
+  // If sockets are not supported
+  // sock.set("transports", ["xhr-polling"]);
+  // sock.set("polling duration", 10);
   app.use(express.errorHandler());
 });
 

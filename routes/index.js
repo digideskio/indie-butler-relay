@@ -10,6 +10,9 @@ app.get('/:user/:path.:format', function(req, res){
         case 'json':
           res.json(data);
         break;
+        case 'atom':
+          res.send(data);
+        break;
         case 'html':
           res.send(data);
           break;
