@@ -3,13 +3,14 @@
 */
 
 /*Catch all*/
-app.get('/:user/:path', function(req, res){
-
-  console.log("-------------------------BUTLER HOST----------------", req.header('host'));
-
-
-  if(app.socketRouter.routeExists(req.params.user)) {
-    app.socketRouter.route(req.params.user, {headers: req.headers, path: '/' + req.params.path}, function(data) {
+app.get('/:path?', function(req, res){
+  var host = req.header('host').match(/butler\.(.*)/);
+  if(host && host[1] && app.socketRouter.routeExists(host[1])) {
+    var p = '/'
+    if (req.params.path) {
+      p += req.params.path
+    }
+    app.socketRouter.route(host[1], {headers: req.headers, path: p}, function(data) {
       for(header in data.headers) {
         res.header(header, data.headers[header]);
       }

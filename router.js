@@ -3,22 +3,22 @@ function router() {
   this._routes = {};
 }
 
-router.prototype.routeExists = function(user) {
-  return this._routes[user];
+router.prototype.routeExists = function(domain) {
+  return this._routes[domain];
 }
 
-router.prototype.route = function(user, request, callback) {
-  this._routes[user].emit('get', request, function(response) {
+router.prototype.route = function(domain, request, callback) {
+  this._routes[domain].emit('get', request, function(response) {
   callback(response);
   });
 }
 
-router.prototype.register = function(user, client) {
-  this._routes[user] = client;
+router.prototype.register = function(domain, client) {
+  this._routes[domain] = client;
 }
 
-router.prototype.unregister = function(user, client) {
-  delete this._routes[user];
+router.prototype.unregister = function(domain, client) {
+  delete this._routes[domain];
 }
 
 exports.router = router;
