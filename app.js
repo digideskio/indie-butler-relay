@@ -15,6 +15,8 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.sock.set("transports", ["xhr-polling"]);
+  app.sock.set("polling duration", 10);
 });
 
 app.configure('production', function(){
