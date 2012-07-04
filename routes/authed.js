@@ -27,7 +27,9 @@ app.get('/authed/:socket', function(req, res){
       }
       res.end();
     });
-  })
+  }).on('error', function(e) {
+  console.log("Got error: " + e.message);
+});
 
 
 });
