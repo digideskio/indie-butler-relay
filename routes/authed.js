@@ -1,7 +1,5 @@
 var http = require('http');
-/*
-http://indieauth.com/auth?redirect_uri=http://0.0.0.0:3000/authed&me=ouvre-boite.com
-*/
+
 app.get('/authed/:socket', function(req, res){
   http.get("http://indieauth.com/session?token=" + req.query.token, function (resp) {
     var body = "";
