@@ -2,7 +2,6 @@ var http = require('http');
 
 app.get('/authed/:socket', function(req, res){
         console.error("alpha");
-        console.debug("alpha");
         console.info("alpha");
         console.log("alpha");
 
