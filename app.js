@@ -19,6 +19,8 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.errorHandler());
+  app.sock.set("transports", ["xhr-polling"]);
+  app.sock.set("polling duration", 10);
 });
 
 // Routes

@@ -8,9 +8,8 @@ app.get('/authed/:socket', function(req, res){
     });
     resp.on('end', function() {
       auth = JSON.parse(body)
-      if(auth.me) {
-        // So we could confirm the auth!
-        var socket = app.socketRouter.sockets[req.params.socket];
+      var socket = app.socketRouter.sockets[req.params.socket];
+      if(auth.me && socket) {
         socket.handler = auth.me
         app.socketRouter.register(auth.me, socket);
         res.write("Awesome. You are now binded to " + auth.me);
