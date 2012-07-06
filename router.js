@@ -6,7 +6,6 @@ function router() {
 
 // Checks whether a route exists.
 router.prototype.routeExists = function(domain) {
-    console.info("--- Listing Routes ---", this._routes);
   return this._routes[domain];
 }
 
