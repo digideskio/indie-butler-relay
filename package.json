@@ -1,12 +1,16 @@
 {
   "name": "butler-relay",
-  "version": "0.0.1-7",
+  "version": "0.0.1-23",
   "private": true,
   "dependencies": {
     "express": "2.5.11",
-    "socket.io": "0.9.6"
+    "socket.io": "0.9.6",
+    "request": "2.9.203"
   },
   "subdomain": "butler",
+  "domains": [
+    "butler.ouvre-boite.com"
+  ],
   "scripts": {
     "start": "app.js"
   },

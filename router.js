@@ -6,13 +6,14 @@ function router() {
 
 // Checks whether a route exists.
 router.prototype.routeExists = function(domain) {
+    console.info("--- Listing Routes ---", this._routes);
   return this._routes[domain];
 }
 
 // Sends a request down to a butler
 router.prototype.route = function(domain, request, callback) {
   this._routes[domain].emit('get', request, function(response) {
-  callback(response);
+    callback(response);
   });
 }
 

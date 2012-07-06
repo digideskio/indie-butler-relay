@@ -2,6 +2,7 @@
 /*Catch all*/
 app.get('/:path?', function(req, res){
   var host = req.header('host').match(/butler\.(.*)/);
+  console.info("--- Request for Butler ---", host[1]);
   if(host && host[1] && app.socketRouter.routeExists(host[1])) {
     var p = '/'
     if (req.params.path) {
