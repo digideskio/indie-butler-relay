@@ -11,7 +11,7 @@ router.prototype.routeExists = function(domain) {
 
 // Sends a request down to a butler
 router.prototype.route = function(domain, request, callback) {
-  this._routes[domain].emit('get', request, function(response) {
+  this._routes[domain].emit('request', request, function(response) {
     callback(response);
   });
 }
