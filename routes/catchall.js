@@ -8,7 +8,7 @@ app.get('/*', function(req, res) {
   var host = req.header('host').match(/butler\.(.*)/);
   if(host && host[1] && app.socketRouter.routeExists(host[1])) {
     app.socketRouter.route(host[1], {method: 'get', headers: req.headers, path: p}, function(response) {
-      res.send(response.body, response.headers, response.status || 200]])
+      res.send(response.body, response.headers, response.status || 200)
     });
   }
   else {
