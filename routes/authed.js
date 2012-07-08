@@ -9,16 +9,14 @@ app.get('/authed/:socket', function(req, res) {
         var parsed = url.parse(auth.me);
         socket.handler = parsed.hostname;
         app.socketRouter.register(parsed.hostname, socket);
-        res.write("Awesome. You are now binded to " + parsed.hostname);
+        res.send({bound: true, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 201);
       }
       else {
-        res.write("Nope. You are not binded to " + parsed.hostname);
+        res.send({bound: false, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 403);
       }
-      res.end();
     }
     else {
-      res.write("Nope. You are not binded");
-      res.end();
+      res.send({bound: false, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 500);
     }
   });
 });
