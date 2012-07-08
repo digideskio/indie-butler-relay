@@ -9,14 +9,29 @@ app.get('/authed/:socket', function(req, res) {
         var parsed = url.parse(auth.me);
         socket.handler = parsed.hostname;
         app.socketRouter.register(parsed.hostname, socket);
-        res.send({bound: true, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 201);
+        if(req.query.human) {
+          res.send('Successfully connected as ' +  parsed.hostname, {}, 201);
+        }
+        else {
+          res.send({bound: true, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 201);
+        }
       }
       else {
-        res.send({bound: false, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 403);
+        if(req.query.human) {
+          res.send('It looks like you do not own ' +  parsed.hostname, {}, 403);
+        }
+        else {
+          res.send({bound: false, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 403);
+        }
       }
     }
     else {
-      res.send({bound: false, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 500);
+      if(req.query.human) {
+        res.send('We couldn\'t check that you own ' +  parsed.hostname, {}, 500);
+      }
+      else {
+        res.send({bound: false, domain: parsed.hostname}, {'Content-Type': 'application/json'}, 500);
+      }
     }
   });
 });
